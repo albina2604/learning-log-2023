@@ -8,6 +8,9 @@
   <li>
     <p>{{ entry.date_added|date:'d.m.Y H:i' }}</p>
     <p>{{ entry.text|linebreaks }}</p>
+    <p>
+      <a href="{% url 'learning_logs:edit_entry' entry.id %}">Edit entry</a>
+    </p>
   </li>
   {% empty %}
   <li>Відсутні записи за темою.</li>
