@@ -2,7 +2,8 @@
 {% block content %}
 
   <form action="{% url 'users:register' %}" method="post">
-    {% csrf_token %} {{ form.as_p }}
+    {% csrf_token %} 
+    {{ form.as_p }}
 
     <button type="submit">Register</button>
     <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
