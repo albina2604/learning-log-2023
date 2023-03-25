@@ -21,6 +21,7 @@ def topics(request):
     return render(request, 'learning_logs/topics.html', context)
 
 
+@login_required
 def topic(request, topic_id):
     """Виводить одну тему і всі ії записи"""
     topic = Topic.objects.get(id=topic_id)
@@ -29,6 +30,7 @@ def topic(request, topic_id):
     return render(request, 'learning_logs/topic.html', context)
 
 
+@login_required
 def new_topic(request):
     """Додає нову тему"""
     if request.method != 'POST':
@@ -45,6 +47,7 @@ def new_topic(request):
     return render(request, 'learning_logs/new_topic.html', context)
 
 
+@login_required
 def new_entry(request, topic_id):
     """Додає новий запис до певної теми"""
     topic = Topic.objects.get(id=topic_id)
@@ -62,6 +65,7 @@ def new_entry(request, topic_id):
     return render(request, 'learning_logs/new_entry.html', context)
 
 
+@login_required
 def edit_entry(request, entry_id):
     """Редагує існуючий запис"""
     entry = Entry.objects.get(id=entry_id)
