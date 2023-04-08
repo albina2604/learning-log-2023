@@ -26,8 +26,7 @@ def topics(request):
 def topic(request, topic_id):
     """Виводить одну тему і всі ії записи"""
     topic = Topic.objects.get(id=topic_id)
-    if topic.owner != request.user:
-        raise Http404
+    check_topic_owner()
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/topic.html', context)
@@ -92,3 +91,8 @@ def edit_entry(request, entry_id):
         'form': form,
     }
     return render(request, 'learning_logs/edit_entry.html', context)
+
+
+def check_topic_owner(request):
+    if topic.owner != request.user:
+        raise Http404
